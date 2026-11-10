@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+    List<Integer>list = new ArrayList<>();
+    public int kthSmallest(TreeNode root, int k) {
+      // List<Integer>list = new ArrayList<>();
+        inorder(root);
+        return list.get(k-1);
+
+
+        
+    }
+    public void inorder(TreeNode root) {
+        if(root == null) {
+            return;  // stop the recursive func call 
+        }
+        // BST property ensures that inorder traversal naturally visits nodes in ascending order 
+
+
+        inorder(root.left); // recurisve call till the deepest node 
+
+        // below line executes only after the left subtree has been completely traversed 
+        list.add(root.val);  // add the current node after processing 
+
+
+        inorder(root.right); 
+
+    }
+
+
+
+
+}
